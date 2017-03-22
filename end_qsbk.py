@@ -15,7 +15,7 @@ class QSBK:
         #存放程序是否继续进行的变量
         self.enable=False
 
-     #传入某一页的页数，获取该页的代码
+     #传入某一页的页数，获取该页代码
     def getPage(self,pageIndex):
             try:
                 url = 'http://www.qiushibaike.com/8hr/page/' + str(pageIndex)
