@@ -41,7 +41,10 @@ class QSBK:
         items = re.findall(pattern, pageCode)
         pageStories=[]
         for item in items:
-            pageStories.append([item[0].strip(),item[1].strip(),item[2].strip()])
+            #去除<br/><span></span>标签
+            replace=re.compile('<br/>|<span>|</span>')
+            text=re.sub(replace,"\n",item[1])
+            pageStories.append([item[0].strip(),text.strip(),item[2].strip()])
         return pageStories
 
     #加载并提取页面的内容，加入到列表中
@@ -61,7 +64,7 @@ class QSBK:
             if input=="Q":
                 self.enable=False
                 return
-            print story[0],story[1],story[2]
+            print u'第%d页\n作者:%s \n内容:%s \n 好笑人数：%s\n' % (page,story[0],story[1],story[2])
 
     def start(self):
         print u'正在读取糗事百科，按回车查看新段子，Q退出'
